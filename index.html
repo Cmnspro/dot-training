@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dot Square Game</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div id="start-screen" class="screen">
+    <h1>Dot Square Game</h1>
+    <p class="instructions">
+      A 6×10 grid of dots will appear and disappear. When four adjacent dots form a 2×2 square, press <kbd>Space</kbd>
+      as fast as you can. Correct press: +100 points. Wrong press: -25 points.
+    </p>
+    <div class="config">
+      <label>
+        Min dot duration (s)
+        <input type="number" id="min-duration" value="3" min="0.2" max="10" step="0.1">
+      </label>
+      <label>
+        Max dot duration (s)
+        <input type="number" id="max-duration" value="6" min="0.2" max="10" step="0.1">
+      </label>
+      <label>
+        Min time hidden (s)
+        <input type="number" id="min-hidden" value="5" min="0.1" max="10" step="0.1">
+      </label>
+      <label>
+        Max time hidden (s)
+        <input type="number" id="max-hidden" value="20" min="0.1" max="30" step="0.1">
+      </label>
+    </div>
+    <button id="start-btn" type="button">Start</button>
+  </div>
+
+  <div id="game-screen" class="screen hidden">
+    <div class="game-header">
+      <button id="back-btn" type="button">Back to menu</button>
+      <div class="hud">
+        <span id="score-display">Score: 0</span>
+        <span id="reaction-display"></span>
+        <span id="best-reaction-display"></span>
+        <span id="high-score-display">High score: 0</span>
+      </div>
+    </div>
+    <div id="feedback" class="feedback" aria-live="polite"></div>
+    <div id="grid-container" tabindex="0">
+      <div id="grid" class="grid"></div>
+    </div>
+  </div>
+
+  <script src="game.js"></script>
+</body>
+
+</html>
