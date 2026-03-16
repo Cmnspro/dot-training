@@ -68,7 +68,15 @@ body {
   min-width: 6rem;
 }
 
-#start-btn {
+.start-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+}
+
+#start-btn,
+.invert-colors-btn {
   padding: 0.6rem 1.5rem;
   font-size: 1rem;
   background: #333;
@@ -78,8 +86,14 @@ body {
   cursor: pointer;
 }
 
-#start-btn:hover {
+#start-btn:hover,
+.invert-colors-btn:hover {
   background: #444;
+}
+
+.game-header .invert-colors-btn {
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
 }
 
 /* Game screen */
@@ -200,4 +214,62 @@ body {
 .cell.scored-br {
   border-bottom: 2px solid rgba(0, 255, 100, 0.9);
   border-right: 2px solid rgba(0, 255, 100, 0.9);
+}
+
+/* Inverted colors (white background, black dots) */
+body.colors-inverted {
+  background: #fff;
+  color: #111;
+}
+
+body.colors-inverted .instructions kbd {
+  background: #ddd;
+  color: #111;
+}
+
+body.colors-inverted .config input {
+  border-color: #ccc;
+  background: #f5f5f5;
+  color: #111;
+}
+
+body.colors-inverted #start-btn,
+body.colors-inverted .invert-colors-btn,
+body.colors-inverted #back-btn {
+  background: #ddd;
+  color: #111;
+  border-color: #bbb;
+}
+
+body.colors-inverted #start-btn:hover,
+body.colors-inverted .invert-colors-btn:hover,
+body.colors-inverted #back-btn:hover {
+  background: #ccc;
+}
+
+body.colors-inverted #grid-container {
+  background: #fff;
+}
+
+body.colors-inverted #grid-container:focus {
+  box-shadow: 0 0 0 2px #666;
+}
+
+body.colors-inverted .cell.has-dot .dot {
+  background: #000;
+}
+
+body.colors-inverted .feedback.correct {
+  color: #070;
+}
+
+body.colors-inverted .feedback.wrong {
+  color: #c00;
+}
+
+body.colors-inverted .cell.scored-tl,
+body.colors-inverted .cell.scored-tr,
+body.colors-inverted .cell.scored-bl,
+body.colors-inverted .cell.scored-br {
+  border-color: rgba(0, 120, 0, 0.9);
 }

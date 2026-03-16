@@ -33,12 +33,16 @@
         <input type="number" id="max-hidden" value="20" min="0.1" max="30" step="0.1">
       </label>
     </div>
-    <button id="start-btn" type="button">Start</button>
+    <div class="start-actions">
+      <button id="start-btn" type="button">Start</button>
+      <button class="invert-colors-btn" type="button">Invert colors</button>
+    </div>
   </div>
 
   <div id="game-screen" class="screen hidden">
     <div class="game-header">
       <button id="back-btn" type="button">Back to menu</button>
+      <button class="invert-colors-btn" type="button">Invert colors</button>
       <div class="hud">
         <span id="score-display">Score: 0</span>
         <span id="reaction-display"></span>

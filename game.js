@@ -258,6 +258,27 @@
     startScreen.classList.remove('hidden');
   });
 
+  function applyInverted(inverted) {
+    document.body.classList.toggle('colors-inverted', inverted);
+    document.querySelectorAll('.invert-colors-btn').forEach((btn) => {
+      btn.textContent = inverted ? 'Normal colors' : 'Invert colors';
+    });
+    try { localStorage.setItem('dotTrainingInvertColors', inverted ? '1' : '0'); } catch (_) {}
+  }
+
+  function toggleInverted() {
+    const next = !document.body.classList.contains('colors-inverted');
+    applyInverted(next);
+  }
+
+  document.querySelectorAll('.invert-colors-btn').forEach((btn) => {
+    btn.addEventListener('click', toggleInverted);
+  });
+
+  try {
+    if (localStorage.getItem('dotTrainingInvertColors') === '1') applyInverted(true);
+  } catch (_) {}
+
   gridContainer.addEventListener('keydown', onKeydown);
   buildGrid();
 })();
