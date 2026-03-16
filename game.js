@@ -11,6 +11,7 @@
   let cfgMaxVisibleMs = 0;
   let cfgMinHiddenMs = 0;
   let cfgMaxHiddenMs = 0;
+  let cfgStartWindowMs = 20000;
   let score = 0;
   let highScore = 0;
   let bestReactionMs = null;
@@ -145,7 +146,7 @@
 
   function startCellCycle(i) {
     if (!gameRunning) return;
-    const initialDelay = Math.random() * (cfgMaxHiddenMs - cfgMinHiddenMs) + cfgMinHiddenMs;
+    const initialDelay = Math.random() * cfgStartWindowMs;
     timeouts[i] = setTimeout(() => {
       timeouts[i] = null;
       if (!gameRunning) return;
@@ -226,10 +227,12 @@
     const maxVisibleS = parseFloat(document.getElementById('max-duration').value) || 3;
     const minHiddenS = parseFloat(document.getElementById('min-hidden').value) || 0.5;
     const maxHiddenS = parseFloat(document.getElementById('max-hidden').value) || 2;
+    const startWindowS = parseFloat(document.getElementById('start-window').value) || 20;
     cfgMinVisibleMs = Math.max(200, minVisibleS * 1000);
     cfgMaxVisibleMs = Math.max(cfgMinVisibleMs, maxVisibleS * 1000);
     cfgMinHiddenMs = Math.max(100, minHiddenS * 1000);
     cfgMaxHiddenMs = Math.max(cfgMinHiddenMs, maxHiddenS * 1000);
+    cfgStartWindowMs = Math.max(500, startWindowS * 1000);
 
     startScreen.classList.add('hidden');
     gameScreen.classList.remove('hidden');
