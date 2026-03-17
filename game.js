@@ -30,6 +30,8 @@
   const feedbackEl = document.getElementById('feedback');
   const startBtn = document.getElementById('start-btn');
   const backBtn = document.getElementById('back-btn');
+  const gridSizeSelect = document.getElementById('grid-size');
+  const gridSizeGameSelect = document.getElementById('grid-size-game');
 
   function index(r, c) {
     return r * COLS + c;
@@ -222,7 +224,17 @@
     }
   }
 
+  function applyGridSize(size) {
+    const valid = ['small', 'medium', 'large', 'xl'].includes(size) ? size : 'small';
+    gridContainer.classList.remove('grid-size-small', 'grid-size-medium', 'grid-size-large', 'grid-size-xl');
+    gridContainer.classList.add('grid-size-' + valid);
+    if (gridSizeSelect) gridSizeSelect.value = valid;
+    if (gridSizeGameSelect) gridSizeGameSelect.value = valid;
+    try { localStorage.setItem('dotTrainingGridSize', valid); } catch (_) {}
+  }
+
   startBtn.addEventListener('click', () => {
+    applyGridSize(gridSizeSelect ? gridSizeSelect.value : 'small');
     const minVisibleS = parseFloat(document.getElementById('min-duration').value) || 1;
     const maxVisibleS = parseFloat(document.getElementById('max-duration').value) || 3;
     const minHiddenS = parseFloat(document.getElementById('min-hidden').value) || 0.5;
@@ -280,7 +292,13 @@
 
   try {
     if (localStorage.getItem('dotTrainingInvertColors') === '1') applyInverted(true);
+    const savedSize = localStorage.getItem('dotTrainingGridSize');
+    if (savedSize) applyGridSize(savedSize);
+    else gridContainer.classList.add('grid-size-small');
   } catch (_) {}
+
+  if (gridSizeSelect) gridSizeSelect.addEventListener('change', () => applyGridSize(gridSizeSelect.value));
+  if (gridSizeGameSelect) gridSizeGameSelect.addEventListener('change', () => applyGridSize(gridSizeGameSelect.value));
 
   gridContainer.addEventListener('keydown', onKeydown);
   buildGrid();

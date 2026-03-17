@@ -36,6 +36,15 @@
         Start window (s)
         <input type="number" id="start-window" value="20" min="0.5" max="120" step="0.5">
       </label>
+      <label>
+        Grid size
+        <select id="grid-size">
+          <option value="small">Small (1280×720)</option>
+          <option value="medium">Medium (1600×900)</option>
+          <option value="large">Large (1920×1080)</option>
+          <option value="xl">XL (2560×1440)</option>
+        </select>
+      </label>
     </div>
     <div class="start-actions">
       <button id="start-btn" type="button">Start</button>
@@ -47,6 +56,15 @@
     <div class="game-header">
       <button id="back-btn" type="button">Back to menu</button>
       <button class="invert-colors-btn" type="button">Invert colors</button>
+      <label class="grid-size-in-game">
+        Size
+        <select id="grid-size-game">
+          <option value="small">Small</option>
+          <option value="medium">Medium</option>
+          <option value="large">Large</option>
+          <option value="xl">XL</option>
+        </select>
+      </label>
       <div class="hud">
         <span id="score-display">Score: 0</span>
         <span id="reaction-display"></span>
